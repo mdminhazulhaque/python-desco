@@ -25,7 +25,7 @@ from datetime import timedelta, datetime
 
 class DescoPrepaid(object):
     
-    URL_BASE = 'http://prepaid.desco.org.bd/api/tkdes/customer'
+    URL_BASE = 'https://prepaid.desco.org.bd/api/tkdes/customer'
     URL_CUSTOMER_INFO = '/getCustomerInfo'
     URL_BALANCE = '/getBalance'
     URL_MONTHLY_CONSUMPTION = '/getCustomerMonthlyConsumption'
@@ -41,7 +41,7 @@ class DescoPrepaid(object):
         account = {
             'accountNo': self.accountid,
         }
-        response = requests.get(self.URL_BASE + api_endpoint, params={**account, **params})
+        response = requests.get(self.URL_BASE + api_endpoint, params={**account, **params}, verify=False)
         return response.json()
 
     def get_balance(self):
