@@ -18,7 +18,7 @@ else:
 
 setup(
     name='desco',
-    version='0.0.1',
+    version='0.1.0',
     author='Md Minhazul Haque',
     author_email='mdminhazulhaque@gmail.com',
     description='A Python module for Dhaka Electric Supply Company Limited (Desco) Smart Meters',

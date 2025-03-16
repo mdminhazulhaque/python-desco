@@ -2,7 +2,7 @@
 
 import click
 from tabulate import tabulate as t
-from desco import DescoPrepaid
+from .desco import DescoPrepaid
 
 @click.group()
 def app():
