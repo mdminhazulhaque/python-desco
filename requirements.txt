@@ -1,3 +1,5 @@
-requests
-click
-tabulate
+# Core dependencies for Desco Prepaid CLI
+requests>=2.25.0
+click>=7.0
+tabulate>=0.8.0
+urllib3>=1.26.0
