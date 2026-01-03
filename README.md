@@ -1,5 +1,10 @@
 # 🔌 Desco Prepaid CLI
 
+[![PyPI version](https://badge.fury.io/py/desco.svg)](https://badge.fury.io/py/desco)
+[![Python Versions](https://img.shields.io/pypi/pyversions/desco.svg)](https://pypi.org/project/desco/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Downloads](https://pepy.tech/badge/desco)](https://pepy.tech/project/desco)
+
 A Python CLI tool to collect information about **Dhaka Electric Supply Company Limited (DESCO)** prepaid electricity accounts. Get real-time balance, consumption data, customer information, and recharge history directly from your terminal.
 
 ## ✨ Features

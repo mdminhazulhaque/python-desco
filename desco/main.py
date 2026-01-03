@@ -11,6 +11,7 @@ import click
 import sys
 from tabulate import tabulate
 from .desco import DescoPrepaid
+from . import __version__
 
 
 def handle_api_error(func):
@@ -25,7 +26,7 @@ def handle_api_error(func):
 
 
 @click.group()
-@click.version_option(version="0.1.0", prog_name="desco-cli")
+@click.version_option(version=__version__, prog_name="desco-cli")
 def app():
     """
     🔌 Desco Prepaid CLI

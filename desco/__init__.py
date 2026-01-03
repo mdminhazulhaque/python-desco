@@ -13,7 +13,8 @@ Example:
 
 from .desco import DescoPrepaid
 
-__version__ = "0.1.0"
+# Version will be updated by GitHub Actions during release
+__version__ = "1.0.0"
 __author__ = "Md Minhazul Haque"
 __email__ = "mdminhazulhaque@gmail.com"
 
