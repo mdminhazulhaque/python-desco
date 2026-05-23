@@ -24,7 +24,8 @@ class DescoPrepaid:
     """
     
     # API Configuration
-    BASE_URL = 'https://prepaid.desco.org.bd/api/tkdes/customer'
+    #BASE_URL = 'https://prepaid.desco.org.bd/api/tkdes/customer'
+    BASE_URL = 'https://prepaid.desco.org.bd/api/unified/customer'
     ENDPOINTS = {
         'customer_info': '/getCustomerInfo',
         'balance': '/getBalance',
