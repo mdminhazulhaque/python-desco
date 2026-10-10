@@ -10,14 +10,15 @@ This is a Python CLI tool for interacting with Dhaka Electric Supply Company Lim
 
 ### Core Components
 
-**desco/desco.py** - API Client Layer
-- `DescoPrepaid` class handles all HTTP communication with DESCO endpoints
+**desco/desco.py** - stateless API engine
+- `DescoPrepaid(account_id)` handles all HTTP communication, **no file/env I/O**
+- Safe to instantiate per-request in FastAPI/Django
 - Base URL: `https://prepaid.desco.org.bd/api/tkdes/customer`
 - **No authentication required** - only account number needed
 - SSL verification disabled with `verify=False` due to DESCO's certificate issues
 - urllib3 warnings suppressed via `urllib3.disable_warnings()`
 - Type hints throughout using `typing` module
-- Methods return tuple of `(data, headers)` or `List[List[str]]`
+- Methods return plain JSON-serializable **dicts** (`get_balance`, `get_customer_info`) or **lists of dicts** (`get_recharge_history`, `get_monthly_consumption`); the CLI handles table formatting
 
 **desco/main.py** - CLI Layer
 - Click-based CLI using decorator pattern (`@app.command(name="...")`)
@@ -113,24 +114,22 @@ Manual workflow dispatch also available via GitHub Actions UI.
 ## API Response Structures
 
 ### Balance Response
-Returns `List[List[str]]` of `[key, value]` pairs from `response['data']`:
+Returns the `response['data']` dict as-is (API-native keys):
 - accountNo, meterNo, balance, currentMonthConsumption, readingTime
 
 ### Customer Info Response
-Returns `List[List[str]]` of `[key, value]` pairs from `response['data']`:
+Returns the `response['data']` dict as-is (API-native keys):
 - accountNo, contactNo, customerName, feederName, installationAddress
 - installationDate, meterNo, phaseType, registerDate, sanctionLoad
 - tariffSolution, meterModel, transformer, SDName
 
 ### Recharge History Response
-Returns tuple `(data, headers)`:
-- Headers: `['rechargeDate', 'totalAmount', 'vat', 'energyAmount']`
-- Data extracted from `response['data']` array, mapping `VAT` (uppercase) to vat
+Returns `List[Dict]` with normalized snake_case keys:
+- `recharge_date, total_amount, vat, energy_amount` (maps `VAT` → `vat`)
 
 ### Monthly Consumption Response
-Returns tuple `(data, headers)`:
-- Headers: `['month', 'consumedTaka', 'consumedUnit', 'maximumDemand']`
-- Data extracted from `response['data']` array
+Returns `List[Dict]` with normalized snake_case keys:
+- `month, consumed_taka, consumed_unit, maximum_demand`
 
 ## CLI Design Pattern
 
